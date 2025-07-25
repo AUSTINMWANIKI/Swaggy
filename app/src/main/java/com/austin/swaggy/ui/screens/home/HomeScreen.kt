@@ -27,12 +27,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.R
+import com.austin.swaggy.navigation.ROUT_ITEM
 import com.austin.swaggy.ui.theme.Pink40
 import com.austin.swaggy.ui.theme.newIndigo
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController:NavController){
 
     Column (
         modifier = Modifier.fillMaxSize().background(newIndigo),
@@ -76,21 +79,22 @@ fun HomeScreen(){
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Button(onClick = {},
+        Button(onClick = {
+            navController.navigate(ROUT_ITEM)
+        },
             colors = ButtonDefaults.buttonColors(Pink40),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
+        )
 
-        ) {
+        {
             Text(text = "Get started")
         }
-
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen()
+    HomeScreen(rememberNavController())
 }

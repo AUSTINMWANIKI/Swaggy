@@ -1,6 +1,7 @@
 package com.austin.swaggy.ui.screens.item
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
@@ -44,15 +47,17 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.R
 import com.austin.swaggy.ui.theme.Pink40
 import com.austin.swaggy.ui.theme.newIndigo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemScreen(){
+fun ItemScreen(navController: NavController){
     Column (
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(color = Color.Red),
     ){
 
       //TopAppBar
@@ -93,6 +98,7 @@ fun ItemScreen(){
               }
           }
       )
+
       //End of TopAppBar
 
       Image(
@@ -105,6 +111,7 @@ fun ItemScreen(){
         Spacer(modifier = Modifier.height(10.dp))
 
         //SearchBar
+
         var search by remember { mutableStateOf("") }
         OutlinedTextField(
             value = search,
@@ -127,26 +134,130 @@ fun ItemScreen(){
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
         )
+
         Spacer(modifier = Modifier.height(10.dp))
 
+       Column(
+           modifier = Modifier.verticalScroll(rememberScrollState())
+       ){
+           //Row
+           Row (
+               modifier = Modifier.padding(start = 20.dp)
+           ){
+               Image(
+                   painter = painterResource(R.drawable.specials),
+                   contentDescription = "spotty",
+                   modifier = Modifier.size(width = 200.dp, height = 250.dp).clip(shape = RoundedCornerShape(20.dp)),
+                   contentScale = ContentScale.Crop
+               )
+
+               Spacer(modifier = Modifier.width(10.dp))
+
+               Column (){
+                   Text(
+                       text = "Stylish cotton shirt",
+                       fontSize = 18.sp,
+                       fontWeight = FontWeight.Bold,
+                   )
+
+                   Spacer(modifier = Modifier.width(5.dp))
+
+                   Text(
+                       text = "Brand:Alexander brand shirts",
+                       fontSize = 15.sp,
+                       fontWeight = FontWeight.Bold,
+                   )
+                   Text(
+                       text = "Price:Ksh 2000",
+                       fontSize = 15.sp,
+                       fontWeight = FontWeight.Bold,
+                       textDecoration = TextDecoration.LineThrough,
+                   )
+                   Spacer(modifier = Modifier.width(5.dp))
+
+                   Text(
+                       text = "Now:Ksh 1800",
+                       fontSize = 15.sp,
+                       fontWeight = FontWeight.Bold,
+                   )
+
+                   Spacer(modifier = Modifier.width(5.dp))
+
+                   Text(
+                       text = "Material:100%cotton",
+                       fontSize = 15.sp,
+                       fontWeight = FontWeight.Bold,
+                   )
+                   Spacer(modifier = Modifier.width(5.dp))
+                   Row{
+                       Icon(
+                           imageVector = Icons.Default.Star,
+                           contentDescription = "celestial",
+                           tint = Color.Yellow,
+                       )
+                       Icon(
+                           imageVector = Icons.Default.Star,
+                           contentDescription = "celestial",
+                           tint = Color.Yellow,
+                       )
+                       Icon(
+                           imageVector = Icons.Default.Star,
+                           contentDescription = "celestial",
+                           tint = Color.Yellow,
+                       )
+                       Icon(
+                           imageVector = Icons.Default.Star,
+                           contentDescription = "celestial",
+                           tint = Color.Yellow,
+                       )
+                       Icon(
+                           imageVector = Icons.Default.Star,
+                           contentDescription = "celestial",
+                           tint = Color.Black,
+                       )
+                   }
+
+                   Button(
+                       onClick ={},
+
+                       colors = ButtonDefaults.buttonColors(newIndigo),
+                       shape = RoundedCornerShape(10.dp),
+                       modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
+
+                       )
+                   {
+                       Text(
+                           text = "Get started"
+                       )
+
+
+                   }
+
+               }
+
+           }
+       }
+        //End of Row
+        Spacer(modifier = Modifier.height(20.dp))
         //Row
         Row (
             modifier = Modifier.padding(start = 20.dp)
         ){
             Image(
-                painter = painterResource(R.drawable.specials),
+                painter = painterResource(R.drawable.rubbervulcanizer),
                 contentDescription = "spotty",
                 modifier = Modifier.size(width = 200.dp, height = 250.dp).clip(shape = RoundedCornerShape(20.dp)),
                 contentScale = ContentScale.Crop
             )
+
             Spacer(modifier = Modifier.width(10.dp))
 
             Column (){
-               Text(
-                   text = "Stylish cotton shirt",
-                   fontSize = 18.sp,
-                   fontWeight = FontWeight.Bold,
-               )
+                Text(
+                    text = "Stylish cotton shirt",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                )
 
                 Spacer(modifier = Modifier.width(5.dp))
 
@@ -168,6 +279,7 @@ fun ItemScreen(){
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                 )
+
                 Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
@@ -228,12 +340,10 @@ fun ItemScreen(){
 
 
     }
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun ItemScreenPreview(){
-    ItemScreen()
+    ItemScreen(rememberNavController())
 }
