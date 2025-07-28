@@ -11,12 +11,13 @@ import com.austin.swaggy.ui.screens.category.CategoryScreen
 import com.austin.swaggy.ui.screens.contact.ContactScreen
 import com.austin.swaggy.ui.screens.home.HomeScreen
 import com.austin.swaggy.ui.screens.item.ItemScreen
+import com.austin.swaggy.ui.screens.splash.SplashScreen
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_HOME
+    startDestination: String = ROUT_SPLASH
 ) {
 
     NavHost(
@@ -40,6 +41,9 @@ fun AppNavHost(
         }
         composable(ROUT_CATEGORY) {
             CategoryScreen(navController)
+        }
+        composable(ROUT_SPLASH) {
+            SplashScreen(navController)
         }
 
     }

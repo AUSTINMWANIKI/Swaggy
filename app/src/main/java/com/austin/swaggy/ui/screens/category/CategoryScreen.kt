@@ -113,7 +113,10 @@ fun CategoryScreen(navController: NavController){
         //Card
         Card(
             onClick = {},
-            modifier = Modifier.fillMaxWidth().height(200.dp).padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(start = 20.dp, end = 20.dp)
         ) {
 
             Box (
@@ -136,7 +139,9 @@ fun CategoryScreen(navController: NavController){
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "favorite",
-                    modifier = Modifier.align(alignment = Alignment.TopStart).padding(10.dp),
+                    modifier = Modifier
+                        .align(alignment = Alignment.TopStart)
+                        .padding(10.dp),
                     tint = Color.White,
                 )
 
@@ -149,7 +154,10 @@ fun CategoryScreen(navController: NavController){
 
         Card(
             onClick = {},
-            modifier = Modifier.fillMaxWidth().height(200.dp).padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(start = 20.dp, end = 20.dp)
         ) {
 
             Box (
@@ -172,23 +180,25 @@ fun CategoryScreen(navController: NavController){
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "favorite",
-                    modifier = Modifier.align(alignment = Alignment.TopStart).padding(10.dp),
+                    modifier = Modifier
+                        .align(alignment = Alignment.TopStart)
+                        .padding(10.dp),
                     tint = Color.White,
                 )
 
 
 
             }
-
-
         }
+
         Text(
             text = "More categories coming soon...",
-            textAlign = TextAlign.Center,
             fontSize = 18.sp,
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
         )
         Button(
             onClick = {},
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
 
 
         ) {
@@ -203,6 +213,7 @@ fun CategoryScreen(navController: NavController){
             text = "Follow us on Instagram @swaggy..ke",
             fontSize = 16.sp,
             textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -210,6 +221,7 @@ fun CategoryScreen(navController: NavController){
         Text(
             text = "Need help? Contact us at support@swaggy.co.ke",
             fontSize = 16.sp,
+            modifier = Modifier.fillMaxWidth(),
 
         )
 
@@ -220,6 +232,7 @@ fun CategoryScreen(navController: NavController){
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp,
+            modifier = Modifier.fillMaxWidth(),
         )
 
 
