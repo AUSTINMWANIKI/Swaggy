@@ -1,6 +1,7 @@
 package com.austin.swaggy.ui.screens.item
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -50,14 +52,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.R
+import com.austin.swaggy.navigation.ROUT_CATEGORY
 import com.austin.swaggy.ui.theme.Pink40
 import com.austin.swaggy.ui.theme.newIndigo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemScreen(navController: NavController){
+
+    val mContext = LocalContext.current
+
     Column (
-        modifier = Modifier.fillMaxSize().background(color = Color.Red),
+        modifier = Modifier.fillMaxSize(),
+
     ){
 
       //TopAppBar
@@ -90,7 +97,9 @@ fun ItemScreen(navController: NavController){
                       contentDescription = "notifications",
                   )
               }
-              IconButton(onClick = {}) {
+              IconButton(onClick = {
+                  navController.navigate(ROUT_CATEGORY)
+              }) {
                   Icon(
                       imageVector = Icons.Default.Share,
                       contentDescription = "share",
@@ -111,7 +120,6 @@ fun ItemScreen(navController: NavController){
         Spacer(modifier = Modifier.height(10.dp))
 
         //SearchBar
-
         var search by remember { mutableStateOf("") }
         OutlinedTextField(
             value = search,
@@ -128,214 +136,182 @@ fun ItemScreen(navController: NavController){
         //End of SearchBar
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            text = "Other products",
+            text = "Other Products",
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Center
         )
-
         Spacer(modifier = Modifier.height(10.dp))
 
-       Column(
-           modifier = Modifier.verticalScroll(rememberScrollState())
-       ){
-           //Row
-           Row (
-               modifier = Modifier.padding(start = 20.dp)
-           ){
-               Image(
-                   painter = painterResource(R.drawable.specials),
-                   contentDescription = "spotty",
-                   modifier = Modifier.size(width = 200.dp, height = 250.dp).clip(shape = RoundedCornerShape(20.dp)),
-                   contentScale = ContentScale.Crop
-               )
-
-               Spacer(modifier = Modifier.width(10.dp))
-
-               Column (){
-                   Text(
-                       text = "Stylish cotton shirt",
-                       fontSize = 18.sp,
-                       fontWeight = FontWeight.Bold,
-                   )
-
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(
-                       text = "Brand:Alexander brand shirts",
-                       fontSize = 15.sp,
-                       fontWeight = FontWeight.Bold,
-                   )
-                   Text(
-                       text = "Price:Ksh 2000",
-                       fontSize = 15.sp,
-                       fontWeight = FontWeight.Bold,
-                       textDecoration = TextDecoration.LineThrough,
-                   )
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(
-                       text = "Now:Ksh 1800",
-                       fontSize = 15.sp,
-                       fontWeight = FontWeight.Bold,
-                   )
-
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(
-                       text = "Material:100%cotton",
-                       fontSize = 15.sp,
-                       fontWeight = FontWeight.Bold,
-                   )
-                   Spacer(modifier = Modifier.width(5.dp))
-                   Row{
-                       Icon(
-                           imageVector = Icons.Default.Star,
-                           contentDescription = "celestial",
-                           tint = Color.Yellow,
-                       )
-                       Icon(
-                           imageVector = Icons.Default.Star,
-                           contentDescription = "celestial",
-                           tint = Color.Yellow,
-                       )
-                       Icon(
-                           imageVector = Icons.Default.Star,
-                           contentDescription = "celestial",
-                           tint = Color.Yellow,
-                       )
-                       Icon(
-                           imageVector = Icons.Default.Star,
-                           contentDescription = "celestial",
-                           tint = Color.Yellow,
-                       )
-                       Icon(
-                           imageVector = Icons.Default.Star,
-                           contentDescription = "celestial",
-                           tint = Color.Black,
-                       )
-                   }
-
-                   Button(
-                       onClick ={},
-
-                       colors = ButtonDefaults.buttonColors(newIndigo),
-                       shape = RoundedCornerShape(10.dp),
-                       modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-
-                       )
-                   {
-                       Text(
-                           text = "Get started"
-                       )
-
-
-                   }
-
-               }
-
-           }
-       }
-        //End of Row
-        Spacer(modifier = Modifier.height(20.dp))
-        //Row
-        Row (
-            modifier = Modifier.padding(start = 20.dp)
+        Column (
+            modifier = Modifier.verticalScroll(rememberScrollState())
         ){
-            Image(
-                painter = painterResource(R.drawable.rubbervulcanizer),
-                contentDescription = "spotty",
-                modifier = Modifier.size(width = 200.dp, height = 250.dp).clip(shape = RoundedCornerShape(20.dp)),
-                contentScale = ContentScale.Crop
-            )
-
-            Spacer(modifier = Modifier.width(10.dp))
-
-            Column (){
-                Text(
-                    text = "Stylish cotton shirt",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
+            //Row
+            Row(
+                modifier = Modifier.padding(start = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.rubbervulcanizer),
+                    contentDescription = "sweater",
+                    modifier = Modifier.size(width = 200.dp, height = 250.dp)
+                        .clip(shape = RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
                 )
-
-                Spacer(modifier = Modifier.width(5.dp))
-
-                Text(
-                    text = "Brand:Alexander brand shirts",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = "Price:Ksh 2000",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                    textDecoration = TextDecoration.LineThrough,
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-
-                Text(
-                    text = "Now:Ksh 1800",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-
-                Spacer(modifier = Modifier.width(5.dp))
-
-                Text(
-                    text = "Material:100%cotton",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Row{
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "celestial",
-                        tint = Color.Yellow,
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "celestial",
-                        tint = Color.Yellow,
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "celestial",
-                        tint = Color.Yellow,
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "celestial",
-                        tint = Color.Yellow,
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "celestial",
-                        tint = Color.Black,
-                    )
-                }
-
-                Button(
-                    onClick ={},
-
-                    colors = ButtonDefaults.buttonColors(newIndigo),
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-
-                    )
-                {
+                Spacer(modifier = Modifier.width(10.dp))
+                Column() {
                     Text(
-                        text = "Get started"
+                        text = "Stylish Cotton Sweater",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
                     )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Brand:Vincero", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(
+                        text = "Price:Ksh.2,000",
+                        fontSize = 15.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Price:Ksh.1,500", fontSize = 15.sp)
+                    Text(text = "Material:100% Cotton", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Row() {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+
+                    }
+
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Button(
+                        onClick = {
+
+                            val simToolKitLaunchIntent =
+                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
 
 
+
+                        },
+                        colors = ButtonDefaults.buttonColors(newIndigo),
+                        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    ) {
+                        Text(text = "Buy Now")
+                    }
                 }
+
 
             }
+            //End of Row
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+
+            Row(
+                modifier = Modifier.padding(start = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.rubbervulcanizer),
+                    contentDescription = "sweater",
+                    modifier = Modifier.size(width = 200.dp, height = 250.dp)
+                        .clip(shape = RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Column() {
+                    Text(
+                        text = "Stylish Cotton Sweater",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Brand:Vincero", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(
+                        text = "Price:Ksh.2,000",
+                        fontSize = 15.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Price:Ksh.1,500", fontSize = 15.sp)
+                    Text(text = "Material:100% Cotton", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Row() {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+
+                    }
+
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(newIndigo),
+                        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    ) {
+                        Text(text = "Buy Now")
+                    }
+
+
+                }
+            }
+
 
         }
-        //End of Row
 
 
 

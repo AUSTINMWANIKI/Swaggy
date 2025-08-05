@@ -9,8 +9,14 @@ import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.ui.screens.about.AboutScreen
 import com.austin.swaggy.ui.screens.category.CategoryScreen
 import com.austin.swaggy.ui.screens.contact.ContactScreen
+import com.austin.swaggy.ui.screens.dashboard.DashboardScreen
+import com.austin.swaggy.ui.screens.dashboard.DashboardScreen2
+import com.austin.swaggy.ui.screens.detail.DetailScreen
+import com.austin.swaggy.ui.screens.form.FormScreen
 import com.austin.swaggy.ui.screens.home.HomeScreen
+import com.austin.swaggy.ui.screens.intent.IntentScreen
 import com.austin.swaggy.ui.screens.item.ItemScreen
+import com.austin.swaggy.ui.screens.scaffold.scaffoldScreen
 import com.austin.swaggy.ui.screens.splash.SplashScreen
 
 @Composable
@@ -45,6 +51,27 @@ fun AppNavHost(
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
         }
+        composable(ROUT_SCAFFOLD) {
+            scaffoldScreen(navController)
+        }
+        composable(ROUT_DETAIL) {
+            DetailScreen(navController)
+        }
+        composable(ROUT_INTENT) {
+            IntentScreen(navController)
+        }
+        composable(ROUT_DASHBOARD) {
+            DashboardScreen(navController)
+        }
+        composable(ROUT_DASHBOARD2) {
+            DashboardScreen2(navController)
+        }
+        composable(ROUT_FORM) {
+            FormScreen(navController)
+        }
+
+
+
 
     }
 }

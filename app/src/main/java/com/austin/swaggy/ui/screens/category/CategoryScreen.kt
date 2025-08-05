@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.R
+import com.austin.swaggy.navigation.ROUT_DETAIL
 import com.austin.swaggy.ui.theme.newIndigo
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -197,7 +198,9 @@ fun CategoryScreen(navController: NavController){
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
         )
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate(ROUT_DETAIL)
+            },
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
 
 

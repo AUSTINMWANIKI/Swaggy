@@ -49,19 +49,17 @@ fun SplashScreen(navController: NavController){
         navController.navigate(ROUT_HOME)
     }
 
-
     Column (
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ){
 
-
         //Lottie Animation
-        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.one))
+        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.cube))
         val progress by animateLottieCompositionAsState(composition)
         LottieAnimation(composition, progress,
-            modifier = Modifier.size(300.dp)
+           modifier = Modifier.size(300.dp)
         )
 
         //End of animation
@@ -73,6 +71,7 @@ fun SplashScreen(navController: NavController){
             fontSize = 18.sp,
             color = newIndigo,
         )
+
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
@@ -87,12 +86,7 @@ fun SplashScreen(navController: NavController){
         CircularProgressIndicator(
             color = newIndigo,
         )
-
-
-
-
     }
-
 }
 
 @Preview(showBackground = true)
