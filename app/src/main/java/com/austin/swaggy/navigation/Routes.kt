@@ -13,3 +13,9 @@ const val ROUT_DASHBOARD="dashboard"
 const val ROUT_BOARD="board"
 const val ROUT_DASHBOARD2="dashboard2"
 const val ROUT_FORM="form"
+const val ROUT_PHONE="phone"
+
+//Auth
+
+const val ROUT_REGISTER= "register"
+const val ROUT_LOGIN= "login"

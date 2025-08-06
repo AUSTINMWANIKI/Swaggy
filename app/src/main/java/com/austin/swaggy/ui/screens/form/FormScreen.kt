@@ -64,17 +64,13 @@ fun FormScreen(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
-
-
         //Lottie Animation
         val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.cart1))
         val progress by animateLottieCompositionAsState(composition)
         LottieAnimation(composition, progress,
             modifier = Modifier.size(300.dp)
         )
-
         //End of animation
-
 
         Spacer(modifier = Modifier.height(10.dp))
 
