@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Outer rectangle (frame of the image) -->
+    <path
+        android:fillColor="#216EF3"
+        android:pathData="M21,19V5c0,-1.1 -0.9,-2 -2,-2H5c-1.1,0 -2,0.9 -2,2v14c0,1.1 0.9,2 2,2h14c1.1,0 2,-0.9 2,-2zM5,5h14v14H5V5z" />
+
+    <!-- Circle representing the sun -->
+    <path
+        android:fillColor="#E5CF0F"
+        android:pathData="M8.5,13.5c0.83,0 1.5,-0.67 1.5,-1.5s-0.67,-1.5 -1.5,-1.5 -1.5,0.67 -1.5,1.5 0.67,1.5 1.5,1.5z" />
+
+    <!-- Mountain-like shape -->
+    <path
+        android:fillColor="#1DDB24"
+        android:pathData="M21,19l-5.5,-7 -4.5,6 -3,-4L3,19h18z" />
+</vector>

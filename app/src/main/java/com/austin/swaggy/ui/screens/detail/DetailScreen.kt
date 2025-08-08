@@ -47,6 +47,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -60,6 +61,7 @@ import androidx.navigation.compose.rememberNavController
 import com.austin.swaggy.R
 import com.austin.swaggy.navigation.ROUT_INTENT
 import com.austin.swaggy.navigation.ROUT_ITEM
+import com.austin.swaggy.ui.theme.lightBlue
 import com.austin.swaggy.ui.theme.newIndigo
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +86,7 @@ fun DetailScreen(navController: NavController){
                 },
 
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Yellow,
+                    containerColor = lightBlue,
                     titleContentColor = Color.Black,
                     navigationIconContentColor = Color.White
                 )
@@ -94,7 +96,7 @@ fun DetailScreen(navController: NavController){
         //BottomBar
         bottomBar = {
             NavigationBar(
-                containerColor = Color.Yellow
+                containerColor = lightBlue,
             ){
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
@@ -143,6 +145,9 @@ fun DetailScreen(navController: NavController){
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize()
+
+
+
             ) {
 
 
@@ -162,7 +167,7 @@ fun DetailScreen(navController: NavController){
                             contentDescription = "search"
                         )
                     },
-                    placeholder = { Text(text = "Search Products,Categories...") },
+                    placeholder = { Text(text = "Search Products,Categories...", color = lightBlue, fontWeight = FontWeight.Bold) },
                     colors = OutlinedTextFieldDefaults.colors(
                         unfocusedBorderColor = newIndigo,
                         focusedBorderColor = Color.Red,
@@ -179,6 +184,7 @@ fun DetailScreen(navController: NavController){
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 10.dp),
                     textAlign = TextAlign.Center,
+                    color = lightBlue
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -191,7 +197,7 @@ fun DetailScreen(navController: NavController){
                 {
                     Button(
                         onClick = {},
-                        colors = ButtonDefaults.buttonColors(Color.Gray),
+                        colors = ButtonDefaults.buttonColors(lightBlue),
                         shape = RoundedCornerShape(10.dp),
                     ) {
                         Text(text = "Shoes")
@@ -200,7 +206,7 @@ fun DetailScreen(navController: NavController){
 
                     Button(
                         onClick = {},
-                        colors = ButtonDefaults.buttonColors(Color.Gray),
+                        colors = ButtonDefaults.buttonColors(lightBlue),
                         shape = RoundedCornerShape(10.dp),
                     ) {
                         Text(text = "Watches")
@@ -210,7 +216,7 @@ fun DetailScreen(navController: NavController){
 
                     Button(
                         onClick = {},
-                        colors = ButtonDefaults.buttonColors(Color.Gray),
+                        colors = ButtonDefaults.buttonColors(lightBlue),
                         shape = RoundedCornerShape(10.dp),
                     ) {
                         Text(text = "Shirts")
@@ -229,6 +235,7 @@ fun DetailScreen(navController: NavController){
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 10.dp),
                     textAlign = TextAlign.Center,
+                    color = lightBlue
                 )
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -316,8 +323,46 @@ fun DetailScreen(navController: NavController){
                         }
                     }
                     //End of Card
-                }
 
+                    //Card
+
+                    Card(
+                        onClick = {},
+                        modifier = Modifier.width(200.dp).height(250.dp),
+                        elevation = CardDefaults.elevatedCardElevation(8.dp),
+                        //colors = CardDefaults.cardColors(orange1)
+                    )
+
+                    {
+                        Column (
+
+                        )
+                        {
+                            Image(
+                                painter = painterResource(R.drawable.specials),
+                                contentDescription = "spotty",
+                                modifier = Modifier.size(width = 200.dp, height = 250.dp).clip(shape = RoundedCornerShape(20.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            Text(
+                                text = "Stylish Sneakers",
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            Text(
+                                text = "KES.3400",
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
+                    //End of Card
+                }
                 //End of row
 
 

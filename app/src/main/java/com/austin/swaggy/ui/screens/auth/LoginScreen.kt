@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,8 +16,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -26,9 +29,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.austin.swaggy.R
+import com.austin.swaggy.navigation.ROUT_ADD_PRODUCT
 import com.austin.swaggy.navigation.ROUT_DASHBOARD2
 import com.austin.swaggy.navigation.ROUT_HOME
+import com.austin.swaggy.navigation.ROUT_PRODUCT_LIST
 import com.austin.swaggy.navigation.ROUT_REGISTER
+import com.austin.swaggy.ui.theme.darkGreen
+import com.austin.swaggy.ui.theme.lightBlue
+import com.austin.swaggy.ui.theme.lightBlue1
+import com.austin.swaggy.ui.theme.lightRed
+import com.austin.swaggy.ui.theme.lightViolet
 import com.austin.swaggy.viewmodel.AuthViewModel
 
 @Composable
@@ -48,16 +58,14 @@ fun LoginScreen(
             if (user == null) {
                 Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
             } else {
-                if (user.role == "Student") {
-                    navController.navigate(ROUT_DASHBOARD2) {
-                    }
-                } else if (user.role=="Teacher"){
-                    navController.navigate(ROUT_HOME) {
-                    }
+                if (user.role == "Seller") {
+                    navController.navigate(ROUT_ADD_PRODUCT)
+
+                } else
+                    navController.navigate(ROUT_PRODUCT_LIST) {
+
                 }
-                else{
-                    navController.navigate(ROUT_DASHBOARD2)
-                }
+
             }
         }
     }
@@ -70,11 +78,16 @@ fun LoginScreen(
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(lightBlue1)
+                .paint(painter = painterResource(R.drawable.lattice), contentScale = ContentScale.FillBounds),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+            horizontalAlignment = Alignment.CenterHorizontally,
+
+        )
+
+        {
             // Animated Welcome Text
             AnimatedVisibility(
                 visible = true,
@@ -89,9 +102,14 @@ fun LoginScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-            // Email Input
+
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+
+                // Email Input
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -100,6 +118,7 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(start = 20.dp,end=20.dp)
                     .background(Color(0x80FFFFFF), shape = RoundedCornerShape(12.dp)),
                 shape = RoundedCornerShape(12.dp),
                 textStyle = MaterialTheme.typography.bodyLarge.copy(color = Color.Black),
@@ -120,6 +139,7 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(start = 20.dp,end=20.dp)
                     .background(Color(0x80FFFFFF), shape = RoundedCornerShape(12.dp)),
                 shape = RoundedCornerShape(12.dp),
                 textStyle = MaterialTheme.typography.bodyLarge.copy(color = Color.Black),
@@ -157,20 +177,27 @@ fun LoginScreen(
                             authViewModel.loginUser(email, password)
                         }
                     },
-                    modifier = Modifier.fillMaxSize(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-                    shape = RoundedCornerShape(12.dp)
+
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                    colors = ButtonDefaults.buttonColors(lightBlue1)
                 ) {
                     Text("Login", color = Color.White)
                 }
             }
 
+
+
+
             Spacer(modifier = Modifier.height(16.dp))
 
             // Register Navigation Button
             TextButton(onClick = { navController.navigate(ROUT_REGISTER) }) {
-                Text("Don't have an account? Register")
+                Text("Don't have an account? Register", fontFamily = FontFamily.Cursive, fontSize = 30.sp, color = Color.Black)
             }
+
+
+
         }
     }
 }

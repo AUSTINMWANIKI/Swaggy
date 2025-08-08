@@ -1,12 +1,17 @@
 package com.austin.swaggy.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.austin.swaggy.data.UserDatabase
 import com.austin.swaggy.repository.UserRepository
 import com.austin.swaggy.ui.screens.about.AboutScreen
@@ -21,16 +26,22 @@ import com.austin.swaggy.ui.screens.form.FormScreen
 import com.austin.swaggy.ui.screens.home.HomeScreen
 import com.austin.swaggy.ui.screens.intent.IntentScreen
 import com.austin.swaggy.ui.screens.item.ItemScreen
+import com.austin.swaggy.ui.screens.products.AddProductScreen
+import com.austin.swaggy.ui.screens.products.EditProductScreen
+import com.austin.swaggy.ui.screens.products.ProductListScreen
 import com.austin.swaggy.ui.screens.scaffold.scaffoldScreen
 import com.austin.swaggy.ui.screens.shot.PhoneScreen
 import com.austin.swaggy.ui.screens.splash.SplashScreen
 import com.austin.swaggy.viewmodel.AuthViewModel
+import com.austin.swaggy.viewmodel.ProductViewModel
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_SPLASH
+    startDestination: String = ROUT_REGISTER,
+    productViewModel: ProductViewModel = viewModel(),
 ) {
 
     val context= LocalContext.current
@@ -104,6 +115,28 @@ fun AppNavHost(
                 }
             }
         }
+
+        // END OF AUTHENTICATION
+
+        //Products
+        composable(ROUT_ADD_PRODUCT) {
+            AddProductScreen(navController, productViewModel)
+        }
+
+        composable(ROUT_PRODUCT_LIST) {
+            ProductListScreen(navController, productViewModel)
+        }
+
+        composable(
+            route = ROUT_EDIT_PRODUCT,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val productId = backStackEntry.arguments?.getInt("productId")
+            if (productId != null) {
+                EditProductScreen(productId, navController, productViewModel)
+            }
+        }
+        //End of Products
 
 
 

@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -16,8 +17,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -29,6 +32,8 @@ import com.austin.swaggy.model.User
 import com.austin.swaggy.navigation.ROUT_LOGIN
 import com.austin.swaggy.viewmodel.AuthViewModel
 import com.austin.swaggy.R
+import com.austin.swaggy.ui.theme.lightBlue1
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
@@ -52,7 +57,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .paint(painter = painterResource(R.drawable.lattice), contentScale = ContentScale.FillBounds),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -95,9 +100,11 @@ fun RegisterScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
 
+
+
         //Role
         var role by remember { mutableStateOf("student") }
-        val roleOptions = listOf("Student", "Parent","Teacher")
+        val roleOptions = listOf("Buyer", "Seller")
         var expanded by remember { mutableStateOf(false) }
 
         ExposedDropdownMenuBox(
@@ -170,7 +177,7 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         Box(
             modifier = Modifier
@@ -184,6 +191,8 @@ fun RegisterScreen(
                 ),
             contentAlignment = Alignment.Center
         ) {
+
+
             Button(
                 onClick = {
                     if (username.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
@@ -195,8 +204,9 @@ fun RegisterScreen(
                         onRegisterSuccess()
                     }
                 },
+                shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.fillMaxSize(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+                colors = ButtonDefaults.buttonColors(lightBlue1)
             ) {
                 Text("Register", color = Color.White)
             }
@@ -207,7 +217,7 @@ fun RegisterScreen(
         TextButton(
             onClick = { navController.navigate(ROUT_LOGIN) }
         ) {
-            Text("Already have an account? Login")
+            Text("Already have an account? Login", fontFamily = FontFamily.Cursive, fontSize = 30.sp)
         }
     }
 }
