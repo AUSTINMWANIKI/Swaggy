@@ -55,6 +55,7 @@ import com.austin.swaggy.R
 import com.austin.swaggy.navigation.ROUT_DETAIL
 import com.austin.swaggy.navigation.ROUT_INTENT
 import com.austin.swaggy.navigation.ROUT_ITEM
+import com.austin.swaggy.ui.theme.lightBlue1
 import com.austin.swaggy.ui.theme.newIndigo
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,7 +77,7 @@ fun IntentScreen(navController: NavController){
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Yellow,
+                    containerColor = Color.Blue,
                     titleContentColor = Color.Black,
                     navigationIconContentColor = Color.White
                 )
@@ -86,7 +87,7 @@ fun IntentScreen(navController: NavController){
         //BottomBar
         bottomBar = {
             NavigationBar(
-                containerColor = Color.Yellow
+                containerColor = Color.Blue
             ){
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
@@ -120,7 +121,7 @@ fun IntentScreen(navController: NavController){
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { /* Add action */ },
-                containerColor = Color.LightGray
+                containerColor = lightBlue1
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
@@ -134,7 +135,7 @@ fun IntentScreen(navController: NavController){
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize()
-                    .paint(painter = painterResource(R.drawable.ether), contentScale = ContentScale.FillBounds)
+                    .paint(painter = painterResource(R.drawable.lattice), contentScale = ContentScale.FillBounds)
             ) {
 
 

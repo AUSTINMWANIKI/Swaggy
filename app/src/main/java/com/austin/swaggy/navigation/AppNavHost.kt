@@ -40,8 +40,8 @@ import com.austin.swaggy.viewmodel.ProductViewModel
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_REGISTER,
-    productViewModel: ProductViewModel = viewModel(),
+    startDestination: String = ROUT_PRODUCT_LIST,
+    productViewModelViewModel: ProductViewModel = viewModel(),
 ) {
 
     val context= LocalContext.current
@@ -120,11 +120,11 @@ fun AppNavHost(
 
         //Products
         composable(ROUT_ADD_PRODUCT) {
-            AddProductScreen(navController, productViewModel)
+            AddProductScreen(navController, productViewModelViewModel)
         }
 
         composable(ROUT_PRODUCT_LIST) {
-            ProductListScreen(navController, productViewModel)
+            ProductListScreen(navController, productViewModelViewModel)
         }
 
         composable(
@@ -133,7 +133,7 @@ fun AppNavHost(
         ) { backStackEntry ->
             val productId = backStackEntry.arguments?.getInt("productId")
             if (productId != null) {
-                EditProductScreen(productId, navController, productViewModel)
+                EditProductScreen(productId, navController, productViewModelViewModel)
             }
         }
         //End of Products

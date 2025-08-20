@@ -319,7 +319,7 @@ fun DashboardScreen(navController: NavController){
 //End of column
 
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun DashboardScreenPreview(){
     DashboardScreen(rememberNavController())

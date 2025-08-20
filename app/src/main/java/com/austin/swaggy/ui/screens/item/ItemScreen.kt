@@ -71,7 +71,7 @@ fun ItemScreen(navController: NavController){
       TopAppBar(
           title = { Text(text = "Products") },
           colors = TopAppBarDefaults.topAppBarColors(
-              containerColor = newIndigo,
+              containerColor = Color.Blue,
               titleContentColor = Color.Yellow,
               navigationIconContentColor = Color.White,
               actionIconContentColor = Color.White,
@@ -221,7 +221,7 @@ fun ItemScreen(navController: NavController){
 
 
                         },
-                        colors = ButtonDefaults.buttonColors(newIndigo),
+                        colors = ButtonDefaults.buttonColors(Color.Blue),
                         modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
                     ) {
                         Text(text = "Buy Now")
@@ -300,7 +300,7 @@ fun ItemScreen(navController: NavController){
                     Spacer(modifier = Modifier.width(5.dp))
                     Button(
                         onClick = {},
-                        colors = ButtonDefaults.buttonColors(newIndigo),
+                        colors = ButtonDefaults.buttonColors(Color.Blue),
                         modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
                     ) {
                         Text(text = "Buy Now")

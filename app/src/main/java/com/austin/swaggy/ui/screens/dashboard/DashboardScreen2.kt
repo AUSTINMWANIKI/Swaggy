@@ -1,6 +1,7 @@
 package com.austin.swaggy.ui.screens.dashboard
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -89,15 +90,14 @@ fun DashboardScreen2(navController: NavController){
                     Spacer(modifier = Modifier.width(190.dp))
 
                     Image(
-                        painter = painterResource(R.drawable.man),
+                        painter = painterResource(R.drawable.searching),
                         contentDescription = "human",
-                        modifier = Modifier.height(100.dp).offset(y = 110.dp)
+                        modifier = Modifier.height(90.dp).width(90.dp).offset(y = 120.dp),
                     )
                 }
                 //End of row
 
                 //Row
-
                 Row (
                 )
 
@@ -107,9 +107,6 @@ fun DashboardScreen2(navController: NavController){
                     color = Color.White,
                     modifier = Modifier.padding(end = 100.dp)
                 )
-
-
-
                 }
                 //End of row
 
@@ -210,9 +207,7 @@ fun DashboardScreen2(navController: NavController){
                 Image(painter = painterResource(R.drawable.word),
                       contentDescription = "spreadsheet",
                       modifier = Modifier.padding(start = 30.dp, top = 30.dp)
-
                     )
-
             }
                 Text(text = "Layout docs", fontWeight = FontWeight.Bold)
                 Text(text = "WAV+10MB")

@@ -43,6 +43,7 @@ import com.austin.swaggy.navigation.ROUT_ADD_PRODUCT
 import com.austin.swaggy.navigation.ROUT_EDIT_PRODUCT
 import com.austin.swaggy.navigation.ROUT_PRODUCT_LIST
 import com.austin.swaggy.navigation.editProductRoute
+import com.austin.swaggy.ui.theme.lightBlue1
 import com.austin.swaggy.viewmodel.ProductViewModel
 import java.io.IOException
 import java.io.OutputStream
@@ -64,7 +65,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
             Column {
                 TopAppBar(
                     title = { Text("Products", fontSize = 20.sp) },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = lightBlue1),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {
                             Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
@@ -207,6 +208,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+
                     // Message Seller
                     OutlinedButton(
                         onClick = {
@@ -220,10 +222,11 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Row {
                             Icon(
                                 imageVector = Icons.Default.Send,
-                                contentDescription = "Message Seller"
+                                contentDescription = "Message Seller",
+                                tint = Color.White,
                             )
                             Spacer(modifier = Modifier.width(3.dp))
-                            Text(text = "Message Seller")
+                            Text(text = "Message Seller", color = Color.White)
                         }
                     }
 
@@ -247,7 +250,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Icon(
                             imageVector = Icons.Default.Delete,
                             contentDescription = "Delete",
-                            tint = Color.White
+                            tint = Color.White,
                         )
                     }
 
@@ -338,7 +341,7 @@ fun generateProductPDF(context: Context, product: Product) {
 @Composable
 fun BottomNavigationBar1(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFFA2B9A2),
+        containerColor = Color(0xFF6DACF7),
         contentColor = Color.White
     ) {
 

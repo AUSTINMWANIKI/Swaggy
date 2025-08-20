@@ -7,7 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -24,9 +26,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.austin.swaggy.R
 import com.austin.swaggy.navigation.ROUT_ADD_PRODUCT
+import com.austin.swaggy.navigation.ROUT_EDIT_PRODUCT
 import com.austin.swaggy.navigation.ROUT_PRODUCT_LIST
+import com.austin.swaggy.ui.theme.lightBlue1
 import com.austin.swaggy.viewmodel.ProductViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +60,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
         topBar = {
             TopAppBar(
                 title = { Text("Add Product", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                colors = TopAppBarDefaults.mediumTopAppBarColors(lightBlue1),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
@@ -128,8 +136,27 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                     modifier = Modifier.fillMaxWidth()
                 )
 
+                // Phone Number
+                OutlinedTextField(
+                    value = phone,
+                    onValueChange = { phone = it },
+                    label = { Text("Phone Number") },
+                    leadingIcon = { Icon(painter = painterResource(R.drawable.phone), contentDescription = "phone") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
 
                 Spacer(modifier = Modifier.height(16.dp))
+                Row (
+                    modifier = Modifier.horizontalScroll(rememberScrollState())
+                )
+                {
+                    //Lottie Animation
+                    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.cube))
+                    val progress by animateLottieCompositionAsState(composition)
+                    LottieAnimation(composition, progress,
+                        modifier = Modifier.size(300.dp)
+                    )
 
                 // Image Picker Box
                 Box(
@@ -153,12 +180,18 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                         }
                     }
                 }
+                }
+
+
+
+
 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 // Add Product Button
                 Button(
                     onClick = {
+                        navController.navigate(ROUT_PRODUCT_LIST)
                         val priceValue = price.toDoubleOrNull()
                         if (priceValue != null) {
                             imageUri?.toString()?.let { viewModel.addProduct(name, priceValue, phone,it) }
@@ -167,7 +200,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(Color.LightGray)
+                    colors = ButtonDefaults.buttonColors(lightBlue1)
                 ) {
                     Text("Add Product", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
